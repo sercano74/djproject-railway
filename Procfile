@@ -1,1 +1,1 @@
-web: gunicorn dj_project.wsgi
+web: python manage.py collectstatic && gunicorn dj_project.wsgi
