@@ -1,13 +1,39 @@
 <!-- home.html -->
 {% extends 'base.html' %}
 
-{% load static  %}
-
 
 {% block content %}
 <h1> Artículos </h1>
 
-<img src="{% static '/images/francia.jpg' %}" alt="No image disposible" style="width:150px;"></img>
+<div class="table">
+    <table class="table table-striped table-hover table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Imagen</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Tipo</th>
+                <th scope="col">Descripción</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for s in servicios %}
+            <tr>
+                <td>{{ forloop.counter }}</td>
+                <td><img src="{{ s.image.url }}" alt="Imagen no disponible" style="max-width: 80px; height: auto;"></td>
+                <td>{{ s.name }}</td>
+                <td>{{ s.type }}</td>
+                <td>{{ s.descrip }}</td>
+                <td>{{ s.price }}</td>
+                {% comment %} <td><a href="{% url 'article_detail' article.id %}">Ver más</a></td> {% endcomment %}
+                <td><a href="#">Ver más</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 
 <hr>
 
