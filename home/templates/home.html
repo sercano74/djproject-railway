@@ -3,13 +3,42 @@
 
 {% load static  %}
 
+{% block carousel %}
+
+<h1>Home</h1>
+
+<!-- ################## -->
+<div id="carouselExampleInterval" class="carousel slide carousel-con-fondo" data-bs-ride="carousel" >
+    <div class="carousel-inner carousel-inner-fixed-height">
+        <div class="carousel-item active" data-bs-interval="10000">
+            <img src="{% static 'images/francia.jpg' %}" class="d-block w-05 mx-auto carousel-image-fixed-height" alt="..." style="height: 100%; object-fit: cover;">
+        </div>
+        <div class="carousel-item" data-bs-interval="2000">
+            <img src="{% static 'images/hamburger.jpg' %}" class="d-block w-10 mx-auto carousel-image-fixed-height" alt="...">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'images/juegos.jpg' %}" class="d-block w-10 mx-auto carousel-image-fixed-height" alt="...">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+    </button>
+</div>
+<!-- ################## -->
+{% endblock %}
+
+
 {% block content %}
 
-<h1 >Home</h1>
-
 <ul>
-    <li><a href="/">Home</a></li>
+    <li><a href="/"><h6 class="animate__animated animate__heartBeat animate__infinite">Home</h6></a></li>
     <li><a href="/blog/articles">Articulos</a></li>
+    <li><a href="{% url 'contacto' %}" class="btn btn-info">Contáctanos</a></li>
 </ul>
 
 <p>Lorem </p>

@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Contáctanos</h1>
+    <p>Envíanos un mensaje y te responderemos a la brevedad.</p>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="{{ form.nombre.id_for_label }}" class="form-label">Nombre:</label>
+            {{ form.nombre }}
+            {% if form.nombre.errors %}
+                <div class="error">{{ form.nombre.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.email.id_for_label }}" class="form-label">Email:</label>
+            {{ form.email }}
+            {% if form.email.errors %}
+                <div class="error">{{ form.email.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.celular.id_for_label }}" class="form-label">Celular:</label>
+            {{ form.celular }}
+            {% if form.celular.errors %}
+                <div class="error">{{ form.celular.errors }}</div>
+            {% endif %}
+        </div>
+        <div class="mb-3">
+            <label for="{{ form.mensaje.id_for_label }}" class="form-label">Mensaje:</label>
+            {{ form.mensaje }}
+            {% if form.mensaje.errors %}
+                <div class="error">{{ form.mensaje.errors }}</div>
+            {% endif %}
+        </div>
+        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+    </form>
+{% endblock %}

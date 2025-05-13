@@ -20,16 +20,20 @@
         </thead>
         <tbody>
             {% for s in servicios %}
-            <tr>
-                <td>{{ forloop.counter }}</td>
-                <td><img src="{{ s.image.url }}" alt="Imagen no disponible" style="max-width: 80px; height: auto;"></td>
-                <td>{{ s.name }}</td>
-                <td>{{ s.type }}</td>
-                <td>{{ s.descrip }}</td>
-                <td>{{ s.price }}</td>
-                {% comment %} <td><a href="{% url 'article_detail' article.id %}">Ver más</a></td> {% endcomment %}
-                <td><a href="#">Ver más</a></td>
-            </tr>
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td><img src="{{ s.image.url }}" alt="Imagen no disponible" style="max-width: 80px; height: auto;"></td>
+                    <td>{{ s.name }}</td>
+                    <td>{{ s.type }}</td>
+                    <td>{{ s.descrip }}</td>
+                    <td>{{ s.price }}</td>
+                    {% comment %} <td><a href="{% url 'article_detail' article.id %}">Ver más</a></td> {% endcomment %}
+                    <td><a href="#">Ver más</a></td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center">No hay artículos disponibles</td>
+                </tr>
             {% endfor %}
         </tbody>
     </table>

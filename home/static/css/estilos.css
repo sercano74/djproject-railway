@@ -1,0 +1,27 @@
+.carousel-con-fondo {
+    background-color: rgba(215, 141, 241, 0.374); /* Ejemplo: fondo negro semi-transparente */
+}
+.carousel-image-fixed-height {
+    max-height: 300px; /* Establece la altura máxima deseada */
+    width: auto;      /* Permite que el ancho se ajuste proporcionalmente */
+    object-fit: contain; /* Ajusta la imagen dentro del contenedor manteniendo su relación de aspecto */
+}
+
+.carousel-inner-fixed-height {
+    max-height: 300px; /* Asegúrate de que el contenedor también tenga una altura máxima */
+    display: flex;      /* Para centrar verticalmente la imagen si no ocupa toda la altura */
+    align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
+}
+
+.h1-heartbeat {
+    animation-name: heartbeat; /* El nombre de la animación definida en Animate.css */
+    animation-duration: calc(var(--animate-duration) * 1); /* Duración de la animación */
+    animation-iteration-count: infinite; /* Repetir indefinidamente */
+}
+
+section{
+    display: grid;
+    min-height: 100dvh;
+    grid-template-rows: auto 1fr auto;
+
+}
