@@ -18,7 +18,7 @@ def contacto(request):
             destinatario = settings.EMAIL_DESTINATARIO  # Usaremos una configuración en settings.py
 
             try:
-                send_mail(asunto, cuerpo, settings.DEFAULT_FROM_EMAIL, [destinatario])
+                send_mail(asunto, cuerpo, settings.DEFAULT_FROM_EMAIL, destinatario, fail_silently=False)
                 messages.success(request, 'Gracias, tu mensaje ha sido enviado a Francia Producciones. Te contactaremos a la brevedad!')
                 return redirect('contacto')  # Redirige a la misma página con un mensaje de éxito
             except Exception as e:
