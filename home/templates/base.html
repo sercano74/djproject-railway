@@ -12,6 +12,8 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
 
     </head>
+
+
     <body>
         <section>
             <header>
@@ -33,8 +35,7 @@
                                 </li> {% endcomment %}
                                 <li class="nav-item dropdown">
                                     <a class="nav-link dropdown-toggle" href="/blog/articles" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    Artículos
-                                    </a>
+                                    Artículos </a>
                                     <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
                                         <li><a class="dropdown-item active" href="/blog/articles">Todos</a></li>
                                         <li><a class="dropdown-item" href="/blog/articlesxalim">Alimentos</a></li>
@@ -44,8 +45,26 @@
                                         <li><a class="dropdown-item" href="#">Próximamente</a></li>
                                     </ul>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'contacto' %}">Contáctanos</a>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/blog/articles" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        Contáctanos </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="{% url 'contacto' %}">Vía email</a></li>
+                                        <li><a class="dropdown-item"  href="https://wa.me/56994483342" target="_blank" style="display: inline-block;">Vía whatsapp</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Próximamente</a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="/blog/articles" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        FranNoticias </a>
+                                    <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDropdown">
+                                        <li><a class="dropdown-item" href="/blog/Posteos">Blog</a></li>
+                                        <li><hr class="dropdown-divider"></li>
+                                        <li><a class="dropdown-item" href="#">Próximamente</a></li>
+                                    </ul>
                                 </li>
                             </ul>
                             <form class="d-flex">
@@ -56,8 +75,39 @@
                     </div>
                 </nav>
 
+
+                <!--   Messages from BACKEND   -->
+                <div class="container-fluid">
+                    {% for message in messages %}
+                        {% if message.tags == 'success' %}
+                            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                            <script >
+                                var m = "{{ message }}"
+                                swal("Perfect !",m, "success")
+                            </script>
+                        {% endif %}
+                        {% if message.tags == 'error' %}
+                            <img src="{% static 'images/message.jpeg' %}" alt="No image disposible" class="img-fluid" style="width:20%; height: auto; object-fit: cover;"></img>
+                            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                            <script >
+                                var m = "{{ message }}"
+                                swal("Warning!",m, "error")
+                            </script>
+                        {% endif %}
+                        {% if message.tags == 'info' %}
+                            <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+                            <script >
+                                var m = "{{ message }}"
+                                swal("Atemptiom!",m, "info")
+                            </script>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+
+
                 {% block carousel%}
                 {% endblock %}
+
 
             </header>
 
@@ -75,8 +125,24 @@
             <hr>
             <!-- Footer -->
             <footer class="container">
-                <p class="">&copy; 2025 By Ordered-Pro &middot; <a href="#">Privacidad</a> &middot; <a href="#">Términos</a></p>
-                <p class="float-end"><a href="#">Volver al inicio</a></p>
+                <div class="row">
+                    <div class="col-md-4">
+                        <p class="">&copy; 2025 By Ordered-Pro &middot; <a href="#">Privacidad</a> &middot; <a href="#">Términos</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p class="float-end"><a href="#">Volver al inicio</a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p>
+                            <a href="https://wa.me/56994483342" target="_blank" style="display: inline-block;">
+                                <img src="{% static 'images/ws.png' %}" alt="WhatsApp" style="height: 40px; width: 40px;">
+                            </a>
+                        </p>
+                    </div>
+
+
+
+                </div>
             </footer>
         </section>
 

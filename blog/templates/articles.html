@@ -19,9 +19,10 @@
             </tr>
         </thead>
         <tbody>
-            {% for s in servicios %}
+            {% for s in articulos %}
                 <tr>
-                    <td>{{ forloop.counter }}</td>
+                    {% comment %} <td>{{ forloop.counter }}</td> {% endcomment %}
+                    <td>{{ s.id }}</td>
                     <td><img src="{{ s.image.url }}" alt="Imagen no disponible" style="max-width: 80px; height: auto;"></td>
                     <td>{{ s.name }}</td>
                     <td>{{ s.type }}</td>

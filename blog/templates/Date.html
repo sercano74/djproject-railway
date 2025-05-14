@@ -1,0 +1,77 @@
+{% extends "Ap01Blog/PostBase.html" %}
+{% load static %}
+{% comment %} {% load Ap01Blog/processors %} {% endcomment %}
+
+{% block title %}Posts4Category{% endblock %}
+
+
+{% block Posteos %}
+
+<div class="row mb-2 g-5">
+
+    <div class="col-md-9">
+        <div class="alert alert-success" role="alert">
+            Todas los post publicados en : &nbsp; <strong>{{ messi }} de {{year}}</strong>
+        </div>
+
+        {% comment %} <!-- NAVEGACION CON PAGINATOR-->
+        <hr>
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item {% if not publis.has_previous %} disabled {% endif %}">
+                    <a class="page-link rounded-pill-left" href="?page=1"> Inicio </a>
+                </li>
+                <li class="page-item {% if publis.number == 1 %} disabled {% endif %}">
+                    <a class="page-link" href="{% if publis.number != 1 %} ?page={{ publis.previous_page_number }} {% endif %}"> Anterior </a>
+                </li>
+
+                {% for i in aux %}
+                <li class="page-item {% if publis.number == forloop.counter %} active {% endif %}">
+                    <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                </li>
+                {% endfor %}
+
+                <li class="page-item {% if publis.number == publis.paginator.num_pages %} disabled {% endif %}">
+                    <a class="page-link" href="{% if publis.number != publis.paginator.num_pages %} ?page={{ publis.next_page_number }} {% endif %}"> Siguiente </a>
+                </li>
+                <li class="page-item {% if not publis.has_next %} disabled {% endif %}">
+                    <a class="page-link rounded-pill-right" href="?page={{ publis.paginator.num_pages }}"> Última </a>
+                </li>
+            </ul>
+        </nav>
+        <hr>
+        {% endif %}<!-- END/ NAVEGACION CON PAGINATOR--> {% endcomment %}
+
+        {% for p in posts %}
+            <div class="card mb-2">
+                <div class="row g-0">
+                    <div class="col-md-3">
+                        <img class="img-thumbnail" src={{ p.image.url }} style="height:12rem; width: auto;" >
+                    </div>
+                    <div class="col-md-9">
+                        <div class="card-body">
+                            <a href=""><strong class="d-inline-block mb-2 text-primary ">{{p.category}}</strong></a>
+                            <h2 class="mb-0">{{p.title}}</h2>
+                            <div class="mb-1 text-muted"><h6><i>{{p.created|date:"d M Y"}}</i></h6></div>
+                            <p class="card-text mb-auto"> {{p.excerpt}}</p>
+                            <a href="{% url 'Ap01Blog:PostDetail' p.id %}" class="stretched-link">Continue reading...</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% empty %}
+        <div class="alert alert-danger" role="alert">
+            <i><strong>No hay post publicados en este periodo !!!</strong></i>
+        </div>
+        {% endfor %}
+
+
+
+        <!-- VOLVER A POTEOS-->
+        {% comment %} {% if request.path != '/Blog/Posteos/' %} {% endcomment %}
+        <br><a href="{% url 'Ap01Blog:Posteos' %}" class="btn btn-outline-success rounded-pill">Posteos</a></br>
+        {% comment %} {% endif %} <!-- END/ VOLVER A POTEOS--> {% endcomment %}
+
+    </div>
+
+{% endblock %}

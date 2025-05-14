@@ -19,7 +19,7 @@ def contacto(request):
 
             try:
                 send_mail(asunto, cuerpo, settings.DEFAULT_FROM_EMAIL, [destinatario])
-                messages.success(request, 'Tu mensaje ha sido enviado. Te contactaremos pronto.')
+                messages.success(request, 'Gracias, tu mensaje ha sido enviado a Francia Producciones. Te contactaremos a la brevedad!')
                 return redirect('contacto')  # Redirige a la misma página con un mensaje de éxito
             except Exception as e:
                 messages.error(request, f'Hubo un error al enviar el mensaje: {e}')

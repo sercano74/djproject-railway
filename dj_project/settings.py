@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'whitenoise.runserver_nostatic',
+    'ckeditor',
     'home',
     'blog',
 
@@ -89,9 +90,9 @@ DATABASES ={
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -113,11 +114,20 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
+USE_THOUSAND_SEPARATOR = True
+
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
 USE_TZ = True
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'autoParagraph': False,
+    },
+}
 
 
 # Static files (CSS, JavaScript, Images)
@@ -152,5 +162,5 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'ordered.dev.01@gmail.com'  # Tu dirección de correo electrónico
 EMAIL_HOST_PASSWORD = 'bedwoujjjskxbvod'  # Tu contraseña de correo electrónico
 DEFAULT_FROM_EMAIL = 'ordered.dev.01@gmail.com'  # Dirección de correo electrónico remitente por defecto
-EMAIL_DESTINATARIO = 'sergio.cannobbio@gmail.com'  # La dirección a la que se enviarán los mensajes
+EMAIL_DESTINATARIO = ['sergio.cannobbio@gmail.com','franciacontacto@gmail.com']  # La dirección a la que se enviarán los mensajes
 

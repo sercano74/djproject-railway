@@ -1,0 +1,37 @@
+{% extends "Ap01Blog/PostBase.html" %}
+{% load static %}
+
+{% block title %}PostDetail{% endblock %}
+
+{% block PostDetail %}
+
+
+<hr>
+
+<div class="row mb-2 g-5">
+
+    <div class="col-md-9">
+        <article class="blog-post">
+            <div class="col-auto">
+                <img class="img-thumbnail" src={{publi.image.url}} style="height:22rem; width: auto;" >
+            </div>
+            <a href="{% url 'Ap01Blog:Categoria' publi.category.id %}" > <strong class="d-inline-block mb-2 text-primary ">{{publi.category}}</strong></a>
+            <h2 class="blog-post-title mb-1">{{publi.title}}</h2>
+            <h5><i>Por&nbsp;<a href="{% url 'Ap01Blog:Author' publi.author.id %}" class="">{{publi.author}}</a>, a &nbsp; {{publi.created|date:"d M Y"}}.</i></h5>
+            {% comment %} {% url 'Ap01Blog:Author.html' publi.author.id %} {% endcomment %}
+            <p class="lead my-3">{{publi.excerpt}}</p>
+            <hr>
+            <p class="">{{publi.content|safe}}</p>
+            <hr>
+            <strong class="d-inline-block mb-2 text-primary ">Etiquetas</strong>
+            {% for tag in publi.tags.all  %}
+                <span class="badge text-bg-warning"> {{tag.name}} </span>
+            {% endfor %}
+            <br>
+        </article>
+        <br>
+        <a href="{% url 'Ap01Blog:Posteos' %}" class="btn btn-outline-success rounded-pill">Posteos</a>
+
+    </div>
+
+{% endblock %}
