@@ -1,44 +1,43 @@
 {% extends "PostBase.html" %}
-{% load static %}
+{% comment %} {% load static %} {% endcomment %}
+
 
 {% block title %}Posteos{% endblock %}
 
-{% block content %}
-
+{% block Posteos %}
 
 
 <div class="row mb-2 g-5">
-
     <div class="col-md-9">
         <div class="row m-3" >
             <hr>
 
             <!-- NAVEGACION CON PAGINATOR-->
             <div class="col col-md-10">
-                {% if request.path == '/Blog/Posteos/' %}
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item {% if not publis.has_previous %} disabled {% endif %}">
-                            <a class="page-link rounded-pill-left" href="?page=1"> Inicio </a>
-                        </li>
-                        <li class="page-item {% if publis.number == 1 %} disabled {% endif %}">
-                            <a class="page-link" href="{% if publis.number != 1 %} ?page={{ publis.previous_page_number }} {% endif %}"> Anterior </a>
-                        </li>
+                {% if request.path == '/blog/Posteos/' %}
+                    <nav aria-label="Page navigation example">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item {% if not publis.has_previous %} disabled {% endif %}">
+                                <a class="page-link rounded-pill-left" href="?page=1"> Inicio </a>
+                            </li>
+                            <li class="page-item {% if publis.number == 1 %} disabled {% endif %}">
+                                <a class="page-link" href="{% if publis.number != 1 %} ?page={{ publis.previous_page_number }} {% endif %}"> Anterior </a>
+                            </li>
 
-                        {% for i in aux %}
-                        <li class="page-item {% if publis.number == forloop.counter %} active {% endif %}">
-                            <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
-                        </li>
-                        {% endfor %}
+                            {% for i in aux %}
+                            <li class="page-item {% if publis.number == forloop.counter %} active {% endif %}">
+                                <a class="page-link" href="?page={{ forloop.counter }}">{{ forloop.counter }}</a>
+                            </li>
+                            {% endfor %}
 
-                        <li class="page-item {% if publis.number == publis.paginator.num_pages %} disabled {% endif %}">
-                            <a class="page-link" href="{% if publis.number != publis.paginator.num_pages %} ?page={{ publis.next_page_number }} {% endif %}"> Siguiente </a>
-                        </li>
-                        <li class="page-item {% if not publis.has_next %} disabled {% endif %}">
-                            <a class="page-link rounded-pill-right" href="?page={{ publis.paginator.num_pages }}"> Última </a>
-                        </li>
-                    </ul>
-                </nav>
+                            <li class="page-item {% if publis.number == publis.paginator.num_pages %} disabled {% endif %}">
+                                <a class="page-link" href="{% if publis.number != publis.paginator.num_pages %} ?page={{ publis.next_page_number }} {% endif %}"> Siguiente </a>
+                            </li>
+                            <li class="page-item {% if not publis.has_next %} disabled {% endif %}">
+                                <a class="page-link rounded-pill-right" href="?page={{ publis.paginator.num_pages }}"> Última </a>
+                            </li>
+                        </ul>
+                    </nav>
                 {% endif %}
             </div> <!-- END/ NAVEGACION CON PAGINATOR-->
 
@@ -64,14 +63,14 @@
 
         {% for p in publis %}
 
-            {% if request.path == '/Blog/Posteos/' and p.id == first.id %}
+            {% if request.path == '/blog/Posteos/' and p.id == first.id %}
 
                 <div class="p-4 p-md-5 mb-4 rounded text-bg-secondary">
                     <div class="col-md-6px-0">
                         <h1 class="display-2 fst-italic">{{p.title}}</h1>
                         <p class="lead my-3">{{p.excerpt}}</p>
                         <p class="lead mb-0 ">
-                            <a class="lead mb-0 text-decoration-underline text-secondary-emphasis " href="{% url 'Ap01Blog:PostDetail' p.id %}">Continue reading...</a>
+                            <a class="lead mb-0 text-decoration-underline text-secondary-emphasis " href="{% url 'blog:PostDetail' p.id %}?page={{ publis.number }}">Continue reading...</a>
                         </p>
                     </div>
                 </div>
@@ -90,7 +89,7 @@
                                 <h2 class="mb-0">{{p.title}}</h2>
                                 <div class="mb-1 text-muted"><h6><i>{{p.created|date:"d M Y"}}</i></h6></div>
                                 <p class="card-text mb-auto"> {{p.excerpt}}</p>
-                                <a class="lead mb-0 text-decoration-underline text-secondary-emphasis" href="PostDetail p.id " class="stretched-link">Continue reading...</a>
+                                <a class="lead mb-0 text-decoration-underline text-secondary-emphasis" href="{% url 'blog:PostDetail' p.id %}?page={{ publis.number }} " class="stretched-link">Continue reading...</a>
                             </div>
                         </div>
                     </div>

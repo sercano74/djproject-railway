@@ -1,4 +1,4 @@
-{% extends "Ap01Blog/PostBase.html" %}
+{% extends "PostBase.html" %}
 {% load static %}
 {% comment %} {% load Ap01Blog/processors %} {% endcomment %}
 
@@ -54,7 +54,7 @@
                             <h2 class="mb-0">{{p.title}}</h2>
                             <div class="mb-1 text-muted"><h6><i>{{p.created|date:"d M Y"}}</i></h6></div>
                             <p class="card-text mb-auto"> {{p.excerpt}}</p>
-                            <a href="{% url 'Ap01Blog:PostDetail' p.id %}" class="stretched-link">Continue reading...</a>
+                            <a href="PostDetail p.id " class="stretched-link">Continue reading...</a>
                         </div>
                     </div>
                 </div>
@@ -69,7 +69,7 @@
 
         <!-- VOLVER A POTEOS-->
         {% comment %} {% if request.path != '/Blog/Posteos/' %} {% endcomment %}
-        <br><a href="{% url 'Ap01Blog:Posteos' %}" class="btn btn-outline-success rounded-pill">Posteos</a></br>
+        <br><a href=" Posteos" class="btn btn-outline-success rounded-pill">Posteos</a></br>
         {% comment %} {% endif %} <!-- END/ VOLVER A POTEOS--> {% endcomment %}
 
     </div>

@@ -49,16 +49,18 @@ def PostDetail(request,p_id):
     if request.method=='GET':
         try:
             publi = go404(Post,id=p_id)
-            return render (request,'Ap01Blog/PostDetail.html',locals())
+            print('publi ===============>>>  ',publi)
+            page_number = request.GET.get('page')
+            return render(request, 'PostDetail.html', {'publi': publi, 'previous_page': page_number})
         except:
-            message="Posteo seleccionado, no existe o está inactivo !!"
-            return render(request, '404.html', locals())
+            message = "Posteo seleccionado, no existe o está inactivo !!"
+            return render(request, '404.html', {'previous_page': request.GET.get('page')})
 
 def Categoria(request,c_id):
     if request.method=='GET':
         try:
             categoria = go404(CtgPost,pk=c_id)
-            return render (request,'Ap01Blog/Categoria.html',locals())
+            return render (request,'Categoria.html',locals())
         except:
             message="Categoría seleccionada, no existe o está inactiva !!"
             return render(request, '404.html', locals())
@@ -98,5 +100,5 @@ def Date(request,month,year):
     messi = get_mes(month)
     fecha = date(year,month,1).isoformat() # YYYY-MM-DD
     posts = Post.objects.filter(published=True, created__month=month, created__year=year)
-    return render (request,'Ap01Blog/Date.html', locals())
+    return render (request,'Date.html', locals())
 

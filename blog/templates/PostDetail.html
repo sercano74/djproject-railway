@@ -1,4 +1,4 @@
-{% extends "Ap01Blog/PostBase.html" %}
+{% extends "PostBase.html" %}
 {% load static %}
 
 {% block title %}PostDetail{% endblock %}
@@ -15,9 +15,10 @@
             <div class="col-auto">
                 <img class="img-thumbnail" src={{publi.image.url}} style="height:22rem; width: auto;" >
             </div>
-            <a href="{% url 'Ap01Blog:Categoria' publi.category.id %}" > <strong class="d-inline-block mb-2 text-primary ">{{publi.category}}</strong></a>
+            <a href="{% url 'blog:Categoria' publi.category.id %}" > <strong class="d-inline-block mb-2 text-primary ">{{publi.category}}</strong></a>
             <h2 class="blog-post-title mb-1">{{publi.title}}</h2>
-            <h5><i>Por&nbsp;<a href="{% url 'Ap01Blog:Author' publi.author.id %}" class="">{{publi.author}}</a>, a &nbsp; {{publi.created|date:"d M Y"}}.</i></h5>
+            {% comment %} <h5><i>Por&nbsp;<a href="{% url 'Ap01Blog:Author' publi.author.id %}" class="">{{publi.author}}</a>, a &nbsp; {{publi.created|date:"d M Y"}}.</i></h5> {% endcomment %}
+            <h5><i>Publicado el &nbsp;&nbsp; {{publi.created|date:"d M Y"}}.</i></h5>
             {% comment %} {% url 'Ap01Blog:Author.html' publi.author.id %} {% endcomment %}
             <p class="lead my-3">{{publi.excerpt}}</p>
             <hr>
@@ -30,8 +31,10 @@
             <br>
         </article>
         <br>
-        <a href="{% url 'Ap01Blog:Posteos' %}" class="btn btn-outline-success rounded-pill">Posteos</a>
-
+        <a href="{% url 'blog:Posteos' %}" class="btn btn-outline-success rounded-pill">Posteos</a>
+        <br>
+        <a href="{% url 'blog:Posteos' %}?page={{ previous_page }}" class="btn btn-outline-secondary rounded-pill">Volver a la página {{ previous_page }}</a>
     </div>
+</div>
 
 {% endblock %}
