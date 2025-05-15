@@ -3,88 +3,86 @@
 
 {% block title %}PostBase{% endblock %}
 
-
 {% block content %}
-
 <main>
-    {% block Posteos %} {% endblock %}
+    <div class="row mb-2 g-2">
 
-    {% block PostDetail %} {% endblock %}
-
-
-
-        <aside class="col-md-3">
-            <!-- ACERCA DE -->
-            <div class="p-4 mb-3 bg-light rounded">
-                <h4 class="fst-italic">  Acerca de {{current_year}} </h4>
-                <p class="mb-0">   {{ABOUT}}             </p>
-            </div>
-
-            <!-- F CATEGORIAS -->
-            <div class="p-4 mb-3 bg-light rounded">
-                <h4 class="fst-italic"> Categorias</h4>
-                <ol class="list-unstyled">
-                    {% for i in CAT  %}
-                    <li><a href="{% url 'blog:Categoria' i.id %}">{{i.name}}</a></li>
-                    {% endfor %}
-
-                </ol>
-            </div>
-
-            <!-- F DATES (PERIODO) -->
-            <div class="p-4 mb-3 bg-light rounded">
-                <h4 class="fst-italic"> Periodo</h4>
-                <ol class="list-unstyled">
-                    {% for p in dates  %}
-                    {% if p.month == 1 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 2 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 3 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 4 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 5 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 6 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 7 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 8 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 9 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 10 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 11 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% if p.month == 12 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
-                    {% endfor %}
-
-                </ol>
-            </div>
-
-            <!-- REDES SOCIALES -->
-            <div class="p-4 mb-3 bg-light rounded">
-                <h4 class="fst-italic"> Redes</h4>
-                <ol class="list-unstyled">
-
-                    TODO <!-- INVESTIGAR !!! -->
-                    {{ctx_link}}
-                    {% for key in ctx_link %}
-                    <li>{{key}}</li>
-                    {% endfor %}
-
-                    {% if KEY_FACEBOOK.url %}
-                    <li><a href="{{KEY_FACEBOOK.url}}" ><i class="{{KEY_FACEBOOK.icon}}"></i>&nbsp;&nbsp;Facebook</a></li>
-                    {% endif %}
-                    {% if KEY_INSTAGRAM.url %}
-                        <li><a href="{{KEY_INSTAGRAM.url}}" ><i class="{{KEY_INSTAGRAM.icon}}"></i>&nbsp;&nbsp;Instagram</a></li>
-                    {% endif %}
-                    {% if KEY_TWITTER.url %}
-                        <li><a href="{{KEY_TWITTER.url}}" ><i class="{{KEY_TWITTER.icon}}"></i>&nbsp;&nbsp;Twitter X</a></li>
-                    {% endif %}
-                    {% if KEY_GITHUB.url %}
-                        <li><a href="{{KEY_GITHUB.url}}" ><i class="{{KEY_GITHUB.icon}}"></i>&nbsp;&nbsp;GitHub</a></li>
-                    {% endif %}
+        <div class="col-md-9">
+            {% block Posteos %} {% endblock %}
+            {% block PostDetail %} {% endblock %}
+        </div>
 
 
-                </ol>
-            </div>
-        </aside>
+        <div class="col-md-3">
+            <aside class="position-sticky" style="top: 2rem;">
+                <!-- ACERCA DE -->
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic">  Acerca de {{current_year}} </h4>
+                    <p class="mb-0">   {{ABOUT}}             </p>
+                </div>
+
+                <!-- F CATEGORIAS -->
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic"> Categorías</h4>
+                    <ol class="list-unstyled">
+                        {% for i in CAT  %}
+                        <li><a href="{% url 'blog:Categoria' i.id %}">{{i.name}}</a></li>
+                        {% endfor %}
+
+                    </ol>
+                </div>
+
+                <!-- F DATES (PERIODO) -->
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic"> Periodo</h4>
+                    <ol class="list-unstyled">
+                        {% for p in dates  %}
+                        {% if p.month == 1 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 2 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 3 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 4 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 5 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 6 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 7 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 8 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 9 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 10 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 11 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% if p.month == 12 %}<li><a href="{% url 'blog:Date' p.month p.year %}">{{p|date:'M Y'}}</a></li>{% endif %}
+                        {% endfor %}
+
+                    </ol>
+                </div>
+
+                <!-- REDES SOCIALES -->
+                <div class="p-4 mb-3 bg-light rounded">
+                    <h4 class="fst-italic"> Redes</h4>
+                    <ol class="list-unstyled">
+
+                        TODO <!-- INVESTIGAR !!! -->
+                        {{ctx_link}}
+                        {% for key in ctx_link %}
+                        <li>{{key}}</li>
+                        {% endfor %}
+
+                        {% if KEY_FACEBOOK.url %}
+                        <li><a href="{{KEY_FACEBOOK.url}}" ><i class="{{KEY_FACEBOOK.icon}}"></i>&nbsp;&nbsp;Facebook</a></li>
+                        {% endif %}
+                        {% if KEY_INSTAGRAM.url %}
+                            <li><a href="{{KEY_INSTAGRAM.url}}" ><i class="{{KEY_INSTAGRAM.icon}}"></i>&nbsp;&nbsp;Instagram</a></li>
+                        {% endif %}
+                        {% if KEY_TWITTER.url %}
+                            <li><a href="{{KEY_TWITTER.url}}" ><i class="{{KEY_TWITTER.icon}}"></i>&nbsp;&nbsp;Twitter X</a></li>
+                        {% endif %}
+                        {% if KEY_GITHUB.url %}
+                            <li><a href="{{KEY_GITHUB.url}}" ><i class="{{KEY_GITHUB.icon}}"></i>&nbsp;&nbsp;GitHub</a></li>
+                        {% endif %}
+
+
+                    </ol>
+                </div>
+            </aside>
+        </div>
     </div>
 </main>
-
-
-
-
 {% endblock %}
